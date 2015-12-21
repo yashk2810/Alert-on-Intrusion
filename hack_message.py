@@ -45,3 +45,18 @@ if length2>length1:
 	body="Someone is trying to break into your laptop. The details are: "+hack_message, 
 	to="+917768838624", 
 	from_="YOUR_TWILIO_PHONE_NUMBER")
+	
+try:
+    logs=open('logs/file.txt', 'a')
+except IOError as e:
+    # dir & file don't exist; create them
+    os.mkdir('logs')
+    logs=open('logs/file.txt', 'a')
+except Exception as e:
+    print e
+else:
+    pass
+
+# log it
+logs.write("Message with sid {} sent at {}".format(message.sid,strftime("%a, %d %b %Y %H:%M:%S") + "\n"))
+logs.close()
