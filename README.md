@@ -11,7 +11,7 @@ Run it ONLY ONCE. Then add 'hack_message.py' to the crontab.
 To do that type "crontab -e" on your terminal.
 
 Then type the following command on the last line 
-
-"* * * * * python /path_of_the_program" (without the quotes)
-
+```
+* * * * * python /path_of_the_program
+```
 The "* * * * *" means that the code will run for infinite time.
