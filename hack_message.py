@@ -47,8 +47,15 @@ if length2>length1:
 	cam = pygame.camera.Camera("/dev/video0", (640, 480))
 	cam.start()
 	img = cam.get_image()
-	pygame.image.save(img, "/home/yash/logs/pygame.jpg")
+	f=open("/home/yash/logs/count",'r')
+	c=f.read()
+	pygame.image.save(img, "/home/yash/logs/intruder"+c+".jpg")
 	cam.stop()
+	file_write=open("/home/yash/logs/count",'w')
+	c=str(int(c)+1)
+	file_write.write(c)
+	file_write.close()
+	f.close()
 
 	client = TwilioRestClient(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 	message=client.messages.create(
