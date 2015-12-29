@@ -4,6 +4,8 @@ import urllib2,re,pygeoip,json
 import os
 import twilio
 from twilio.rest import TwilioRestClient
+import pygame
+import pygame.camera
 
 TWILIO_ACCOUNT_SID="YOUR_ACCOUNT_SID"
 TWILIO_AUTH_TOKEN="YOUR_AUTH_TOKEN"
@@ -38,7 +40,15 @@ if length2>length1:
 	", IP: "+data['ip']+\
 	", Latitude: "+str(data['latitude'])+\
 	", longitude: "+str(data['longitude'])+\
-	", zipcode: "+str(data['zip_code']) 
+	", zipcode: "+str(data['zip_code'])
+	
+	pygame.camera.init()
+	pygame.camera.list_cameras()
+	cam = pygame.camera.Camera("/dev/video0", (640, 480))
+	cam.start()
+	img = cam.get_image()
+	pygame.image.save(img, "/home/yash/logs/pygame.jpg")
+	cam.stop()
 
 	client = TwilioRestClient(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 	message=client.messages.create(
