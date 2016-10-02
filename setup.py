@@ -38,7 +38,7 @@ setup(
     # data_files=[('my_data', ['data/data_file'])],
     entry_points={
         'console_scripts': [
-            'hack_message=hack_message:main',
+            'hack_message=Hack-Message.hack_message:main',
         ],
     },
 )
